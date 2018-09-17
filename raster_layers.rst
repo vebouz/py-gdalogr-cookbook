@@ -292,7 +292,7 @@ Before Image: the input Natural Earth 10m geotiff with the timezone overlay we w
       rtnX = geoMatrix[2]
       rtnY = geoMatrix[4]
       pixel = int((x - ulX) / xDist)
-      line = int((ulY - y) / xDist)
+      line = int((ulY - y) / yDist)
       return (pixel, line) 
 
     #
@@ -514,9 +514,9 @@ While this recipe works and is a good example, it is generally recommended to us
 
         # Specify offset and rows and columns to read
         xoff = int((xmin - xOrigin)/pixelWidth)
-        yoff = int((yOrigin - ymax)/pixelWidth)
+        yoff = int((yOrigin - ymax)/pixelHeight)
         xcount = int((xmax - xmin)/pixelWidth)+1
-        ycount = int((ymax - ymin)/pixelWidth)+1
+        ycount = int((ymax - ymin)/pixelHeight)+1
 
         # Create memory target raster
         target_ds = gdal.GetDriverByName('MEM').Create('', xcount, ycount, 1, gdal.GDT_Byte)
